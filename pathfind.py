@@ -94,7 +94,21 @@ def get_distance(des_x, des_y, current_x, current_y):
 	return( 14 * distance_x + 10 (distance_y - distance_x))
 
 
-
+def get_current(open_set, tab)
+	length = len(open_set)
+	if length == 0:
+		return(None)
+	elif length == 1
+		for val in open_set:
+			return (val)
+	current = None
+	min_fcost = 1000
+	for val in open_set:
+		if current == None:
+			current = val
+		elif tab[val[1]][val[0]] < min_fcost
+			min_fcost = tab[val[1]][val[0]]
+			current = val
 
 
 def pathfind_loop(tab, open_set, closed_set):
@@ -107,9 +121,10 @@ def pathfind_loop(tab, open_set, closed_set):
 	des_x, des_y = find_pos(DEST, tab)
 	current_x = start_x
 	current_y = start_y
-	tab[current_y][current_x][1] = 'open'
+	open_set.add((start_x, start_y))
 	print('start position',current_x, current_y)
 	while True:
+		get_current()
 		if current_x == des_x and current_y == des_y:
 			print('found')
 			return
