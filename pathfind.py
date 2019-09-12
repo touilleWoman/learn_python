@@ -49,14 +49,13 @@
 
 
 
-print('1 stand for obstacles, 3 need to find the fastest way to 2')
 
 def init_map(max_x, max_y):
 	tab = []
 	for j in range(max_y):
 		tab.append([])
 		for i in range(max_x):
-			tab[j].append([0, None])
+			tab[j].append([0, None, None])
 	return(tab)
 
 def show_first_val_of_map(tab):
@@ -113,53 +112,68 @@ def get_current(open_set, tab):
 
 
 
-def pathfind_loop(tab):
+def pathfind_loop(tab, start, dest):
 	WALL = 1
 	EMPTY = 0
 	DEST = 2
 	START = 3
 	open_set = set()
-	closed_set = set()
+	closed_lst = []
 
-	start_x, start_y = find_pos(START, tab)
-	des_x, des_y = find_pos(DEST, tab)
-	open_set.add((start_x, start_y))
-	j = 0 #delete later
+	# start[0], start_y[1] = find_pos(START, tab)
+	# des_x, des_y = find_pos(DEST, tab)
+	open_set.add(start)
 	while True:
 		current = get_current(open_set, tab)
-		print('current', current, 'round', j)
 		open_set.remove(current)
-		closed_set.add(current)
-		if current[0] == des_x and current[1] == des_y:
-			print('found')
-			return
+		closed_lst.insert(0, current)
+		if current[0] == dest[0] and current[1] == dest[1]:
+			print('reached destination')
+			return (closed_lst)
 		nei_list = get_neighbour_lst(tab, current[0], current[1])
 		i = 0
 		while i < len(nei_list):
 			if tab[nei_list[i][1]][nei_list[i][0]][0] == WALL:
 				pass
-			elif nei_list[i] in closed_set :
+			elif nei_list[i] in closed_lst :
 				pass
 			elif nei_list[i] not in open_set :
-				f_cost = get_distance(des_x, des_y, nei_list[i][0], nei_list[i][1]) + get_distance(start_x, start_y, nei_list[i][0], nei_list[i][1])
+				f_cost = get_distance(dest[0], dest[1], nei_list[i][0], nei_list[i][1])
+				+ get_distance(start[0], start[1], nei_list[i][0], nei_list[i][1])
 				tab[nei_list[i][1]][nei_list[i][0]][1] = f_cost
+				tab[nei_list[i][1]][nei_list[i][0]][2] = current # parent of node
 				open_set.add(nei_list[i])
 			i = i + 1
-		j = j + 1
 
-
+def retrace(closed_lst, start, tab):
+	path = []
+	first = closed_lst.pop(0)
+	parent = tab[first[1]][first[0]][2]
+	i = 0
+	while parent != start:
+		path.insert(0, parent)
+		for one in closed_lst:
+			if one == parent:
+				parent = tab[one[1]][one[0]][2]
+				break
+	return(path)
 
 
 def main():
 	MAX_Y = 10
 	MAX_X = 10
 	tab = init_map(MAX_X, MAX_Y)
-	tab[0][0][0] = 2
+	start = (7, 6)
+	dest = (0, 0)
+	tab[start[1]][start[0]][0] = 2
 	tab[3][3][0] = 1
 	tab[3][4][0] = 1
-	tab[7][7][0] = 3
+	tab[dest[1]][dest[0]][0] = 3
 	show_first_val_of_map(tab)
-	pathfind_loop(tab)
+	print('1 stand for wall, 3 need to find the fastest way to 2')
+	closed_lst = pathfind_loop(tab, start, dest)
+	path = retrace(closed_lst, start, tab)
+	print('path', path)
 	return(tab)
 
 
