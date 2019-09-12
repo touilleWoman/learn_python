@@ -80,7 +80,7 @@ def get_neighbour_lst(tab, current_x, current_y):
 			if i == current_x and j == current_y:
 				pass
 			elif j < len(tab) and i < len(tab[j]):
-				nei_lst.append([i, j])
+				nei_lst.append((i, j))
 			i = i + 1
 		i = current_x - 1
 		j = j + 1
@@ -91,61 +91,61 @@ def get_distance(des_x, des_y, current_x, current_y):
 	distance_y = abs(des_y - current_y)
 	if distance_x > distance_y :
 		return (distance_y * 14 + 10 * (distance_x - distance_y))
-	return( 14 * distance_x + 10 (distance_y - distance_x))
+	return(14 * distance_x + 10 * (distance_y - distance_x))
 
 
-def get_current(open_set, tab)
-	length = len(open_set)
-	if length == 0:
-		return(None)
-	elif length == 1
-		for val in open_set:
-			return (val)
+def get_current(open_set, tab):
 	current = None
-	min_fcost = 1000
+	min_fcost = None
 	for val in open_set:
 		if current == None:
 			current = val
-		elif tab[val[1]][val[0]] < min_fcost
-			min_fcost = tab[val[1]][val[0]]
-			current = val
+			min_fcost = tab[val[1]][val[0]][1]
+		else:
+			if tab[val[1]][val[0]][1] == None:
+				pass
+			elif min_fcost == None:
+				min_fcost = tab[val[1]][val[0]][1]
+			elif tab[val[1]][val[0]][1] < min_fcost:
+				min_fcost = tab[val[1]][val[0]][1]
+				current = val
+	return (current)
 
 
-def pathfind_loop(tab, open_set, closed_set):
+
+def pathfind_loop(tab):
 	WALL = 1
 	EMPTY = 0
 	DEST = 2
 	START = 3
+	open_set = set()
+	closed_set = set()
 
 	start_x, start_y = find_pos(START, tab)
 	des_x, des_y = find_pos(DEST, tab)
-	current_x = start_x
-	current_y = start_y
 	open_set.add((start_x, start_y))
-	print('start position',current_x, current_y)
+	j = 0 #delete later
 	while True:
-		get_current()
-		if current_x == des_x and current_y == des_y:
+		current = get_current(open_set, tab)
+		print('current', current, 'round', j)
+		open_set.remove(current)
+		closed_set.add(current)
+		if current[0] == des_x and current[1] == des_y:
 			print('found')
 			return
-		nei_list = get_neighbour_lst(tab, current_x, current_y)
+		nei_list = get_neighbour_lst(tab, current[0], current[1])
 		i = 0
-		f_cost = get_distance(des_x, des_y, current_x, current_y) + get_distance(start_x, start_y, current_x, current_y)
 		while i < len(nei_list):
 			if tab[nei_list[i][1]][nei_list[i][0]][0] == WALL:
 				pass
-			elif tab[nei_list[i][1]][nei_list[0]][1] == 'closed':
+			elif nei_list[i] in closed_set :
 				pass
-			elif
-				newf_cost = get_distance(des_x, des_y, current_x, current_y) + get_distance(start_x, start_y, current_x, current_y)
-				if newf_cost < f_cost:
-					f_cost = newf_cost
-					current_x = nei_list[i][0]
-					current_y = nei_list[i][1]
-					tab[current_y][current_x][1] = 'closed'
-				else
-					closed
+			elif nei_list[i] not in open_set :
+				f_cost = get_distance(des_x, des_y, nei_list[i][0], nei_list[i][1]) + get_distance(start_x, start_y, nei_list[i][0], nei_list[i][1])
+				tab[nei_list[i][1]][nei_list[i][0]][1] = f_cost
+				open_set.add(nei_list[i])
 			i = i + 1
+		j = j + 1
 
 
 
@@ -153,15 +153,13 @@ def pathfind_loop(tab, open_set, closed_set):
 def main():
 	MAX_Y = 10
 	MAX_X = 10
-	open_set = set()
-	closed_set = set()
 	tab = init_map(MAX_X, MAX_Y)
 	tab[0][0][0] = 2
 	tab[3][3][0] = 1
 	tab[3][4][0] = 1
 	tab[7][7][0] = 3
 	show_first_val_of_map(tab)
-	pathfind_loop(tab, open_set, closed_set)
+	pathfind_loop(tab)
 	return(tab)
 
 
