@@ -1,38 +1,3 @@
-# import pygame
-
-# def main():
-# 	pygame.init()
-# 	pygame.font.init()
-# 	logo = pygame.image.load("logo.png")
-# 	pygame.display.set_icon(logo)
-# 	# pygame.display.set_caption("minimal program")
-
-
-#     # create a surface on screen that has the size of 240 x 180
-# 	screen = pygame.display.set_mode((640,480))
-# 	background = pygame.Surface(screen.get_size())
-# 	# background.fill((255, 255, 255))
-# 	background = background.convert()
-# 	# screen.blit(background, (0, 0))
-#         # define a variable to control the main loop
-# 	running = True
-
-# 	# main loop
-# 	while running:
-# 	# event handling, gets all event from the event queue
-# 	# for event in pygame.event.get():
-# 		event = pygame.event.wait()
-# 		if event.type == pygame.QUIT:
-# 			running = False
-# 			# mainloop = False
-# 		elif event.type == pygame.KEYDOWN:
-# 			if event.key == pygame.K_ESCAPE:
-# 				running = False
-# 				# mainloop = False
-# 	pygame.quit()
-
-
-
 
 # tab = (
 # 	(2,0,0,0,0,0,0,0,0,0),
@@ -46,8 +11,6 @@
 # 	(0,0,0,0,0,0,0,0,0,0),
 # 	(0,0,0,0,0,0,0,0,0,0)
 # 	)
-
-
 
 
 def init_map(max_x, max_y):
