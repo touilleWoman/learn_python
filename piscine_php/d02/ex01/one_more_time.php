@@ -88,11 +88,9 @@ if ($argc >=2)
 		$minute = get_minute($str);
 		$hour = get_hour($str);
 		$second = get_second($str);
-		echo mktime($hour, $minute, $second, $month, $day, $year);
+		echo mktime($hour, $minute, $second, $month, $day, $year) . "\n";
 	}
 	else
-		echo "Wrong Format";
+		echo "Wrong Format\n";
 }
-// une linge de \n en trop ????
 ?>
-
