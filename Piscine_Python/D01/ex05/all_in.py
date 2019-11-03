@@ -6,7 +6,7 @@ def	reverse_dict(di):
 		new_d[di[key]] = key
 	return new_d
 
-def find_state(city):
+def find(val):
 	states = {
 	"Oregon"    : "OR",
 	"Alabama"   : "AL",
@@ -23,21 +23,30 @@ def find_state(city):
 
 	states2 = reverse_dict(states)
 	citys2 = reverse_dict(capital_cities)
-	if city in citys2:
-		print(states2[citys2[city]])
-	else:
-		print("Unknown capital city")
+	val2 = case_edit(val)
 
+	if val2 in citys2:
+		print(val2, 'is the capital of', states2[citys2[val2]])
+	elif val2 in states:
+		print(capital_cities[states[val2]], 'is the capital of', val2)
+	else:
+		print(val, "is neither a capital city nor a state")
+
+def case_edit(val):
+	val = val.lower()
+	val = val.capitalize()
+	for i in range(0, len(val)):
+		if val[i] == ' ':
+			val = val[:(i + 1)] + val[i + 1].upper() + val[(i + 2):]
+	return(val)
 
 def check_arg():
 	if len(sys.argv) == 2:
 		city_lst = sys.argv[1].split(',')
-		for key in city_lst:
-			string = city_lst[key]
-			city_lst[key] = string.strip()
-
-		print(city_lst)
-
+		city_lst = [i.strip() for i in city_lst]
+		for val in city_lst:
+			if val != "":
+				find(val)
 
 if __name__ == '__main__':
 	check_arg()
