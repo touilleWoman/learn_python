@@ -8,6 +8,7 @@ def odd_or_even(nb):
     else:
         print("I'm Odd.")
 
+
 def check_arg():
     if len(sys.argv) == 1:
         pass
@@ -19,6 +20,7 @@ def check_arg():
             print("ERROR")
     else:
         print("ERROR")
+
 
 if __name__ == '__main__':
     check_arg()

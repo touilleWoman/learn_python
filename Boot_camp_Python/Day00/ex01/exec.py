@@ -1,5 +1,6 @@
 import sys
 
+
 def rev_alpha(str):
     rev = ''.join(reversed(str))
     new_str = ""
@@ -11,6 +12,7 @@ def rev_alpha(str):
         new_str += elem
     print(new_str)
 
+
 def check_arg():
     if len(sys.argv) >= 2:
         lst = list()
@@ -18,6 +20,7 @@ def check_arg():
             lst.append(sys.argv[x])
         str = ' '.join(lst)
         rev_alpha(str)
+
 
 if __name__ == '__main__':
     check_arg()

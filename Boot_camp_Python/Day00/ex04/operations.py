@@ -16,25 +16,22 @@ def operations(x, y):
         print("Quotient:    ", div)
         print("Remainder: ", modulo)
     else:
-        print(
-"""InputError: only numbers
-Usage: python operations.py
-Example:
-    python operations.py 10 3"""
+        print(  "InputError: only numbers\n"
+                "Usage: python operations.py\n"
+                "Example:\n"
+                "   python operations.py 10 3"
                 )
 
 def check_arg():
     if len(sys.argv) < 3:
-        print(
-"""Usage: python operations.py
-Example:
-    python operations.py 10 3""")
+        print(  "Usage: python operations.py\n"
+                "Example:\n"
+                "   python operations.py 10 3")
     elif len(sys.argv) > 3:
-        print(
-"""InputError: too many arguments
-Usage: python operations.py
-Example:
-    python operations.py 10 3""")
+        print(  "InputError: too many arguments\n"
+                "Usage: python operations.py\n"
+                "Example:\n"
+                "   python operations.py 10 3")
     else:
         operations(sys.argv[1], sys.argv[2])
 
