@@ -5,7 +5,8 @@ def kata01():
         'PHP': 'Rasmus Lerdorf',
         }
     for key in languages:
-        print(key + "was created by" + languages[key])
+        print(key, "was created by", languages[key], sep=' ')
+
 
 if __name__ == '__main__':
     kata01()

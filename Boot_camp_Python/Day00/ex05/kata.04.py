@@ -3,5 +3,6 @@ def kata04():
     print("day_{:0>2d}, ex{:0>2d} : {:.2f}, {:.2e}, {:.2e}".
         format(t[0], t[1], t[2],t[3], t[4]))
 
+
 if __name__ == '__main__':
     kata04()

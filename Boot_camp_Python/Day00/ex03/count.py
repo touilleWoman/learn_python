@@ -21,11 +21,11 @@ def count(str):
     print("-", punc, "punctuation marks")
     print("-", space, "spaces")
 
-def text_analyzer(str = "empty"):
+def text_analyzer(str = None):
     """This function counts the number of upper characters, lower characters,
     punctuation and spaces in a given text.
     """
-    if str == "empty":
+    if str == None:
         str = input("What is the text to analyse?\n")
     count(str)
 

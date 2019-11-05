@@ -22,6 +22,7 @@ def operations(x, y):
                 "   python operations.py 10 3"
                 )
 
+
 def check_arg():
     if len(sys.argv) < 3:
         print(  "Usage: python operations.py\n"
@@ -34,6 +35,7 @@ def check_arg():
                 "   python operations.py 10 3")
     else:
         operations(sys.argv[1], sys.argv[2])
+
 
 if __name__ == '__main__':
     check_arg()

@@ -9,14 +9,17 @@ def print_one_recipe(name, cookbook):
             elif key == "prep_time":
                 print("Take {} minutes of cooking.".format(cookbook[name][key]))
 
+
 def delete_one_recipe(name, cookbook):
     if name in cookbook:
         del cookbook[name]
+
 
 def print_all(cookbook):
     for key in cookbook:
         print_one_recipe(key, cookbook)
         print("\n")
+
 
 def add_one_recipe(cookbook, name, ingredients, meal, prep_time):
     ingredients = ingredients.strip()
@@ -24,6 +27,7 @@ def add_one_recipe(cookbook, name, ingredients, meal, prep_time):
     prep_time = prep_time.strip()
     cookbook[name] = {'ingredients': [ i for i in ingredients.split(' ')],
      'meal' : meal, 'prep_time' : prep_time}
+
 
 def choose():
     answer = input(
@@ -35,6 +39,7 @@ def choose():
     5: Quit
     """)
     return answer
+
 
 def q_and_a():
     cookbook = {
@@ -71,6 +76,7 @@ def q_and_a():
         answer = choose()
     print("Cookbook closed")
     exit()
+
 
 if __name__ == '__main__':
     q_and_a()
