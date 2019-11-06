@@ -1,0 +1,19 @@
+>>> getattr(t, '__class__')
+tuple
+
+This is equivalent to:
+
+>>> t.__class__
+tuple
+
+the dot notation that we use in Python all of the time is nothing more than syntactic sugar for “getattr”. Each has its uses; dot notation is far easier to read, and “getattr” gives us the flexibility to retrieve an attribute value with a dynamically built string.
+
+every Python object has attributes, that we can retrieve existing attributes using dot notation or “getattr”, and that we can always set attribute values. If the attribute didn’t exist before our assignment, then it certainly exists afterwards.
+
+We can assign new attributes to nearly any object in Python. 
+
+We can add new attributes whenever we want, and the fact that we do so inside of __init__ is convenient, and makes our code easier to read.
+
+On peut également définir des méthodes statiques. Elles sont assez proches des méthodes de classe sauf qu'elles ne prennent aucun premier paramètre, niselfnicls. Elles travaillent donc indépendamment de toute donnée, aussi bien contenue dans l'instance de l'objet que dans la classe.
+
+Tout est public
