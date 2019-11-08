@@ -10,7 +10,7 @@ class Recipe:
             exit()
         if not (isinstance(ingredients, list) and all(isinstance(x, str) for x in ingredients)):
             print("ingredients should be a list of string")
-        if not (recipe_type == "starter" or "lunch" or "dessert"):
+        if not (recipe_type in ["starter", "lunch", "dessert"]):
             print("recipe_type is {} ,it shold be starter, lunch or dessert".format(recipe_type))
             exit()
 
