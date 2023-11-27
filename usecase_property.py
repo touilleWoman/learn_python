@@ -18,6 +18,14 @@ class Color:
         converted = map(lambda x: hex_dict[x//16] + hex_dict[x % 16], [self.r, self.g, self.b])
         return '#' + ''.join(converted)
 
+    @hex.setter
+    def hex(self, input):
+        r, g, b = input[1:3], input[3:5], input[5:]
+        self.r = int(r, 16)
+        self.g = int(g, 16)
+        self.b = int(b, 16)
+
+    
 
 c = Color(146, 255, 0)
 print(c.hex)
